@@ -1,0 +1,24 @@
+import { Controller } from '@core/infra/Controller'
+import { HttpResponse, fail, ok, clientError } from '@core/infra/HttpResponse'
+
+import { {{ pascalCase name }}UseCase } from './{{ pascalCase name }}UseCase'
+
+type {{ pascalCase name }}ControllerRequest = {}
+
+export class {{ pascalCase name }}Controller implements Controller {
+    constructor(private {{ camelCase name }}UseCase: {{ pascalCase name }}UseCase) {}
+
+    async handle(params: {{ pascalCase name }}ControllerRequest): Promise<HttpResponse> {
+        try {
+            const result = await this.{{ camelCase name }}UseCase.execute({})
+
+            if (!result) {
+                return clientError(new Error('Internal Client Error.'))
+            } else {
+                return ok(result)
+            }
+        } catch (err) {
+            return fail(err)
+        }
+    }
+}
