@@ -23,4 +23,6 @@ COPY --from=build --chown=node:node /home/nodes/node_stockapi/dist /home/nodes/n
 COPY --from=build --chown=node:node /home/nodes/node_stockapi/scripts /home/nodes/node_stockapi/scripts/
 COPY --from=build --chown=node:node /home/nodes/node_stockapi/prisma /home/nodes/node_stockapi/prisma/
 
+RUN cd /dist; npm -g install npm@latest
+
 ENTRYPOINT ["sh","/home/nodes/node_stockapi/scripts/server.sh"]
