@@ -2,8 +2,6 @@ services:
     app:
         build: .
         command: yarn start
-        volumes:
-            - .:/usr/src/app
         ports:
             - 3333:3333
         environment:
