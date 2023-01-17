@@ -1,7 +1,7 @@
 FROM node:14-alpine
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /home/nodes/node_stockapi
 
 # Install app dependencies
 COPY package*.json ./
@@ -17,6 +17,4 @@ RUN yarn build
 EXPOSE 3333
 
 # Start the app
-CMD ["yarn", "prisma:deploy"]
-CMD ["yarn", "prisma:generate"]
 CMD ["yarn", "start"]
