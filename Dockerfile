@@ -17,4 +17,4 @@ RUN yarn build
 EXPOSE 3333
 
 # Start the app
-ENTRYPOINT ["/home/nodes/node_stockapi/scripts/server.sh"]
+ENTRYPOINT ["/nodes/node_stockapi/scripts/server.sh"]
