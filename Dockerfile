@@ -19,10 +19,8 @@ RUN yarn build
 FROM node:lts-alpine AS runtime
 USER node
 COPY --chown=node:node --from=dependencies /home/nodes/node_stockapi/node_modules /home/nodes/node_stockapi/node_modules/
-COPY --from=build --chown=node:node /home/nodes/node_stockapi/dist /home/nodes/node_stockapi/dist/
-COPY --from=build --chown=node:node /home/nodes/node_stockapi/scripts /home/nodes/node_stockapi/scripts/
-COPY --from=build --chown=node:node /home/nodes/node_stockapi/prisma /home/nodes/node_stockapi/prisma/
-
-RUN npm i -g npm
+COPY --from=build --chown=node:node /node_stockapi/dist /home/nodes/node_stockapi/dist/
+COPY --from=build --chown=node:node /node_stockapi/scripts /home/nodes/node_stockapi/scripts/
+COPY --from=build --chown=node:node /node_stockapi/prisma /home/nodes/node_stockapi/prisma/
 
 ENTRYPOINT ["sh","/home/nodes/node_stockapi/scripts/server.sh"]
