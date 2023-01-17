@@ -3,10 +3,7 @@ pipeline {
     stages {
         stage('Pull') {
             steps {
-                sh 'ls'
-                dir('/home/nodes/node_stockapi/') {
-                    git 'pull'
-                }
+                git 'pull'
             }
         }
         stage('Build') {
