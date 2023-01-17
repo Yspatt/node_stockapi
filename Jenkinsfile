@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Pull') {
             steps {
-                git 'git pull origin master'
+                sh 'git pull origin master'
                 
             }
         }
