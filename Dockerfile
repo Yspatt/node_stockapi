@@ -17,4 +17,6 @@ RUN yarn build
 EXPOSE 3333
 
 # Start the app
+CMD ["yarn", "prisma:deploy"]
+CMD ["yarn", "prisma:generate"]
 CMD ["yarn", "start"]
