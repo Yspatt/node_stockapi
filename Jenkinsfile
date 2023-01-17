@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('Pull') {
             steps {
-                sh 'ls'
-                sh 'git pull --rebase origin master'
+                dir('/home/nodes/node_stockapi') {
+                  sh 'git pull origin master'
+                }
                 
             }
         }
