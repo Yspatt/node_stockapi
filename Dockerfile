@@ -1,25 +1,26 @@
-FROM node:14-alpine
-
-# Create app directory
+FROM node:lts-alpine AS devDependencies
 WORKDIR /home/nodes/node_stockapi
+COPY package.json yarn.* tsconfig.json ./
+COPY ./src ./src
+RUN yarn install --production=false --frozen-lockfile
 
-# Install app dependencies
-COPY package*.json ./
-RUN yarn
+FROM node:lts-alpine AS dependencies
+WORKDIR /home/nodes/node_stockapi
+COPY package.json yarn.* ./
+COPY ./src ./src
+RUN yarn install --production=true --frozen-lockfile
 
-# Copy source code
+FROM node:lts-alpine AS build
+WORKDIR /home/nodes/node_stockapi
+COPY --from=devDependencies /home/nodes/node_stockapi/ .
 COPY . .
-
-# Build the app
 RUN yarn build
 
-WORKDIR /home/nodes/node_stockapi/dist
-RUN npm i
+FROM node:lts-alpine AS runtime
+USER node
+COPY --chown=node:node --from=dependencies /home/nodes/node_stockapi/node_modules /home/nodes/node_stockapi/node_modules/
+COPY --from=build --chown=node:node /home/nodes/node_stockapi/dist /home/nodes/node_stockapi/dist/
+COPY --from=build --chown=node:node /home/nodes/node_stockapi/scripts /home/nodes/node_stockapi/scripts/
+COPY --from=build --chown=node:node /home/nodes/node_stockapi/prisma /home/nodes/node_stockapi/prisma/
 
-WORKDIR /home/nodes/node_stockapi/
-
-# Expose the app port
-EXPOSE 3333
-
-# Start the app
-ENTRYPOINT ["sh", "scripts/server.sh"]
+ENTRYPOINT ["/home/nodes/node_stockapi/scripts/server.sh"]
