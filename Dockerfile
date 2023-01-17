@@ -17,4 +17,4 @@ RUN yarn build
 EXPOSE 3333
 
 # Start the app
-ENTRYPOINT ["sh", "/scripts/server.sh"]
+ENTRYPOINT ["sh", "scripts/server.sh"]
