@@ -1,4 +1,4 @@
 #!/bin/sh
-(ls && node_modules/.bin/prisma migrate deploy)
-(ls && node_modules/.bin/prisma generate)
-(ls && node dist/infra/http/server.js)
+(dist/node_modules/.bin/prisma migrate deploy)
+(dist/node_modules/.bin/prisma generate)
+(node dist/infra/http/server.js)
