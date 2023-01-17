@@ -3,11 +3,8 @@ pipeline {
     stages {
         stage('Pull') {
             steps {
-                sh 'ls'
-                dir('/home/nodes/node_stockapi') {
-                    sh 'ls'
-                    git 'git pull origin master'
-                }
+                git 'git pull origin master'
+                
             }
         }
         stage('Build') {
