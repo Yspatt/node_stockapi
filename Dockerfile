@@ -23,4 +23,4 @@ COPY --from=build --chown=node:node /home/nodes/node_stockapi/dist /home/nodes/n
 COPY --from=build --chown=node:node /home/nodes/node_stockapi/scripts /home/nodes/node_stockapi/scripts/
 COPY --from=build --chown=node:node /home/nodes/node_stockapi/prisma /home/nodes/node_stockapi/prisma/
 
-ENTRYPOINT ["/home/nodes/node_stockapi/scripts/server.sh"]
+ENTRYPOINT ["sh","/home/nodes/node_stockapi/scripts/server.sh"]
