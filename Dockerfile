@@ -13,6 +13,11 @@ COPY . .
 # Build the app
 RUN yarn build
 
+WORKDIR /home/nodes/node_stockapi/dist
+RUN npm i
+
+WORKDIR /home/nodes/node_stockapi/
+
 # Expose the app port
 EXPOSE 3333
 

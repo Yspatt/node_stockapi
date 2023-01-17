@@ -13,9 +13,7 @@
         "test": "jest",
         "test:watch": "jest --watch",
         "make:usecase": "plop --plopfile ./.plop/usecase.ts",
-        "build": "babel src --extensions \".ts\" --out-dir dist --copy-files",
-        "prisma:deploy": "node dist/node_modules/.bin/prisma migrate deploy",
-        "prisma:generate": "node dist/node_modules/.bin/prisma generate"
+        "build": "babel src --extensions \".ts\" --out-dir dist --copy-files"
     },
     "devDependencies": {
         "@babel/cli": "7.14.8",
@@ -70,7 +68,6 @@
     },
     "dependencies": {
         "@prisma/client": "3.0.2",
-        "aws-sdk": "2.978.0",
         "axios": "^0.26.1",
         "bcryptjs": "2.4.3",
         "bullmq": "1.40.4",
@@ -79,13 +76,9 @@
         "dotenv": "^10.0.0",
         "dotenv-flow": "^3.2.0",
         "express": "4.17.1",
-        "firebase": "^9.7.0",
-        "html-to-text": "8.0.0",
         "inline-css": "^3.0.0",
         "ioredis": "4.28.0",
         "jsonwebtoken": "8.5.1",
-        "kafkajs": "^1.15.0",
-        "nodemailer": "6.7.0",
         "request": "^2.88.2",
         "sns-validator": "^0.3.4",
         "undici": "^5.0.0",
