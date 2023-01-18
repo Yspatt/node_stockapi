@@ -51,7 +51,7 @@ export class PrismaStockRepository implements IStockRepository {
     }
 
     async removeProduct(sku: string, shelf: string): Promise<Stock> {
-        const deleteFromShelf = await prisma.stock.findFirst({
+        const getShelf = await prisma.stock.findFirst({
             where: {
                 shelf: {
                     reference: shelf,
@@ -59,6 +59,12 @@ export class PrismaStockRepository implements IStockRepository {
                 AND: {
                     sku,
                 },
+            },
+        })
+
+        const deleteFromShelf = await prisma.stock.delete({
+            where: {
+                id: getShelf.id,
             },
         })
 
