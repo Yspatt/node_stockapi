@@ -36,7 +36,7 @@ app.use(
         })
     }
 )
-const PORT = 3333
+const PORT = 3000
 app.listen(PORT, () => {
     console.log(`Backend Running in port ${PORT}.`)
 })

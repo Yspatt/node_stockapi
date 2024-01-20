@@ -11,7 +11,7 @@ export class DeleteWarehouseUseCase {
     constructor(private warehouseRepository: IWarehouseRepository) {}
 
     async execute({ code }: IRequest): Promise<Either<Error, Warehouse>> {
-        if (!code || !(await this.warehouseRepository.alreadyExists(code))) {
+        if (parseInt(code) || !code || !(await this.warehouseRepository.alreadyExists(code))) {
             return left(new WarehouseNotExistsError())
         }
 
